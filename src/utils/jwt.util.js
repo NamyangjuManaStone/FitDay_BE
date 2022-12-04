@@ -1,21 +1,21 @@
 import jwt from 'jsonwebtoken';
-import { JWT_KEY as secret } from '../config';
+import { JWT_SECRET as secret } from '../config';
 
-const sign = (email) => {
-  const payload = { email };
+export const sign = (user) => {
+  const payload = { user };
   return jwt.sign(payload, secret, {
     algorithm: 'HS256',
     expiresIn: '1h',
   });
 };
 
-const verify = (token) => {
+export const verify = (token) => {
   let decoded = null;
   try {
     decoded = jwt.verify(token, secret);
-    return { type: true, email: decoded.email };
+    return { success: true, data: decoded.user };
   } catch (err) {
-    return { type: false, message: err.message };
+    return { success: false, message: err.message };
   }
 };
 
@@ -46,8 +46,3 @@ const verify = (token) => {
 //     return false;
 //   }
 // };
-
-export default {
-  sign,
-  verify,
-};
