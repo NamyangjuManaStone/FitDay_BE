@@ -2,10 +2,17 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon ./src/app.js",
+    "prepare": "husky install",
+    "clean": "bash ./scripts/clean-modules.sh"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +27,13 @@
     "mongoose": "^6.7.2",
     "nodemon": "^2.0.20",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "prettier": "^2.8.0"
   }
 }
