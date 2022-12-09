@@ -5,7 +5,7 @@ export const sign = (user) => {
   const payload = { user };
   return jwt.sign(payload, secret, {
     algorithm: 'HS256',
-    expiresIn: '1h',
+    expiresIn: '24h',
   });
 };
 
